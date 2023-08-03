@@ -1,8 +1,9 @@
+import { ThemeProvider } from "@/provider/theme-provider";
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/provider/theme-provider";
-import { ThemeSwitcher } from "@/components/ui/theme-swither";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import QueryProvider from "@/provider/query-provider";
 
 const nunito = Nunito_Sans({ subsets: ["latin"], display: "swap" });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body className={`${nunito.className} `}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );
