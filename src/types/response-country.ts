@@ -6,26 +6,65 @@ export interface Country {
   capital: string[];
   region: string;
   population: number;
+  tld: string[];
 }
 
-interface Flags {
+export interface CompleteCountry {
+  flags: Flags;
+  name: Name;
+  capital: string[];
+  region: Region;
+  subregion: string;
+  languages: { [key: string]: string };
+  borders: string[];
+  population: number;
+  tld: string[];
+  currencies: { [key: string]: Currency };
+}
+
+export interface Flags {
   png: string;
   svg: string;
   alt: string;
 }
 
-interface Name {
+export interface Name {
   common: string;
   official: string;
-  nativeName: NativeName;
+  nativeName: { [key: string]: NativeName };
 }
 
-interface NativeName {
-  eng: Eng;
-  smo: Eng;
-}
-
-interface Eng {
+export interface NativeName {
   official: string;
   common: string;
+}
+
+export interface Currency {
+  name: string;
+  symbol: string;
+}
+
+export enum Region {
+  Africa = "Africa",
+  Americas = "Americas",
+  Antarctic = "Antarctic",
+  Asia = "Asia",
+  Europe = "Europe",
+  Oceania = "Oceania",
+}
+
+export interface CountryTransformed {
+  name: string;
+  nativeName: string;
+  capital: string;
+  population: number;
+  region: string;
+  subregion: string;
+  languages: string;
+  borders: string[];
+  flags: Flags;
+}
+
+export interface NameCountry {
+  name: Name;
 }
