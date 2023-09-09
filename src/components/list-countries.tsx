@@ -11,7 +11,7 @@ import Spinner from "./spinner";
 const ListCountries = () => {
   const { allCountriesQuery } = useCountries();
   const { debouncedSearchQuery, regionQuery } = useContext(searchContext);
-  const { countryByNameQuery } = useCountry(debouncedSearchQuery, "");
+  const { countryByNameQuery } = useCountry(debouncedSearchQuery);
   const { countryByRegionQuery } = useCountry("", regionQuery);
 
   let countries: Country[] = [];
@@ -37,13 +37,11 @@ const ListCountries = () => {
 
   return (
     <div className="mt-8 flex flex-col items-center gap-10">
-      {countries ? (
-        countries.map((country) => (
-          <CardCountry key={country.name.official} country={country} />
-        ))
-      ) : (
-        <h1>Not found</h1>
-      )}
+      {countries
+        ? countries.map((country) => (
+            <CardCountry key={country.name.official} country={country} />
+          ))
+        : null}
     </div>
   );
 };
