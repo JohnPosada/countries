@@ -4,6 +4,7 @@ import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import QueryProvider from "@/provider/query-provider";
+import { Navbar } from "@/components/ui/navbar";
 
 const nunito = Nunito_Sans({ subsets: ["latin"], display: "swap" });
 
@@ -22,7 +23,10 @@ export default function RootLayout({
       <body className={`${nunito.className} `}>
         <QueryProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+            <main className="flex min-h-screen w-full flex-col bg-light-gray dark:bg-bg-darkest-blue">
+              <Navbar />
+              {children}
+            </main>
           </ThemeProvider>
         </QueryProvider>
       </body>
